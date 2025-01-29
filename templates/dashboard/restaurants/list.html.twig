@@ -1,0 +1,58 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Listado de Restaurantes{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('assets/plugin/DataTables/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/restaurants/restaurants.css') }}">
+{% endblock %}
+
+{% block content %}
+    <main class="main-content mt-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Restaurantes</h1>
+                    <a href="{{ path("admin_restaurants_create") }}" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                        <svg class="w-4 h-4 inline mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg> Nuevo Restaurante
+                    </a>
+                </div>
+
+                <table id="restaurantesTable" class="w-full">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Ubicación</th>
+                        <th>Contacto</th>
+                        <th>Zona</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Confirmar eliminación</h3>
+            <p class="text-sm text-gray-500 mb-4">¿Estás seguro de que quieres eliminar este restaurante? Esta acción no se puede deshacer.</p>
+            <div class="flex justify-end space-x-3">
+                <button id="cancelDeleteBtn" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200">
+                    Cancelar
+                </button>
+                <button id="confirmDeleteBtn" class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('assets/plugin/jQuery/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/plugin/DataTables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/restaurants/list-restaurant.js') }}"></script>
+{% endblock %}

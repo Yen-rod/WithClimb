@@ -1,0 +1,108 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block css %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('assets/plugin/Leaflet/geosearch.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugin/Leaflet/leaflet.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/zones/zones.css') }}">
+{% endblock %}
+
+{% block content %}
+    <main class="main-content mt-8">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6">
+            <div class="mb-6">
+                <h1 class="text-2xl font-bold text-gray-900">Nueva Zona de Escalada</h1>
+                <p class="text-sm text-gray-600">Añade una nueva zona de escalada</p>
+            </div>
+
+            <form id="zonaForm" class="space-y-6">
+                <!-- Nombre -->
+                <div class="space-y-2">
+                    <label class="flex items-center text-sm font-medium text-gray-700">
+                        <i class="fas fa-map-marked-alt mr-2"></i>
+                        Nombre de la Zona
+                    </label>
+                    <input
+                            type="text"
+                            name="nombre"
+                            required
+                            maxlength="100"
+                            class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                            placeholder="Nombre de la zona"
+                    >
+                </div>
+
+                <!-- Ubicación -->
+                <div class="space-y-2">
+                    <label class="flex items-center text-sm font-medium text-gray-700">
+                        <i class="fas fa-location-dot mr-2"></i>
+                        Ubicación
+                    </label>
+                    <div class="map-container">
+                        <div id="map-loader" class="map-loader">
+                            <div class="loader"></div>
+                        </div>
+                        <div id="map"></div>
+                    </div>
+                    <input type="hidden" name="ubicacion" id="ubicacionInput">
+                    <div id="locationPreview" class="location-preview"></div>
+                </div>
+
+                <!-- Descripción -->
+                <div class="space-y-2">
+                    <label class="flex items-center text-sm font-medium text-gray-700">
+                        <i class="fas fa-align-left mr-2"></i>
+                        Descripción
+                    </label>
+                    <textarea
+                            name="descripcion"
+                            rows="4"
+                            class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                            placeholder="Describe la zona, accesos, características..."
+                    ></textarea>
+                </div>
+
+                <!-- Bloques -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <label class="flex items-center text-sm font-medium text-gray-700">
+                            <i class="fas fa-cube mr-2"></i>
+                            Bloques
+                        </label>
+                        <button type="button" id="addBlockBtn"
+                                class="px-3 py-1 text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50">
+                            <i class="fas fa-plus mr-1"></i>
+                            Añadir Bloque
+                        </button>
+                    </div>
+                    <div id="bloquesList" class="space-y-4">
+                        <!-- Los bloques se añadirán aquí dinámicamente -->
+                    </div>
+                </div>
+
+
+                <!-- Botones -->
+                <div class="flex gap-4 justify-end pt-4">
+                    <button type="button" onclick="window.history.back()"
+                            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                        Cancelar
+                    </button>
+                    <button type="submit"
+                            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">
+                        Añadir
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/plugin/jQuery/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/plugin/Leaflet/leaflet.js') }}"></script>
+    <script src="{{ asset('assets/plugin/Leaflet/bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/zones/new-zone.js') }}"></script>
+{% endblock %}

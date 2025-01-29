@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - WithClimb</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-image-blur {
+            background: url('{{ asset('assets/images/view-young-person-rock-climbing-practicing-bouldering-training.jpg') }}') center center/cover no-repeat;
+            position: relative;
+        }
+
+        .bg-image-blur::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: inherit;
+            filter: blur(4px);
+            z-index: 0;
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .content-overlay {
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight-text {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="h-screen">
+<div class="min-h-screen flex flex-col md:flex-row">
+    <!-- Columna Izquierda con imagen desenfocada -->
+    <div class="hidden md:block md:w-1/2 lg:w-2/3 bg-image-blur overflow-hidden relative">
+        <!-- Overlay oscuro para mejorar la legibilidad -->
+        <div class="bg-overlay"></div>
+
+        <!-- Contenido principal -->
+        <div class="content-overlay w-full h-full flex flex-col justify-center items-center text-white px-8">
+            <div class="max-w-2xl text-center">
+                <h1 class="text-5xl lg:text-7xl font-bold mb-8 highlight-text">WithClimb</h1>
+                <p class="text-xl lg:text-2xl mb-12 leading-relaxed highlight-text">
+                    Únete a la comunidad de escalada más apasionada.
+                    Descubre rutas, comparte experiencias y conecta con otros escaladores.
+                </p>
+
+                <!-- Estadísticas -->
+                <div class="grid grid-cols-3 gap-8 mt-12 max-w-lg mx-auto">
+                    <div class="glass-effect rounded-lg p-4">
+                        <div class="text-4xl font-bold highlight-text">500+</div>
+                        <div class="text-sm mt-2">Rutas</div>
+                    </div>
+                    <div class="glass-effect rounded-lg p-4">
+                        <div class="text-4xl font-bold highlight-text">2K+</div>
+                        <div class="text-sm mt-2">Usuarios</div>
+                    </div>
+                    <div class="glass-effect rounded-lg p-4">
+                        <div class="text-4xl font-bold highlight-text">100+</div>
+                        <div class="text-sm mt-2">Zonas</div>
+                    </div>
+                </div>
+
+                <!-- Características -->
+                <div class="grid grid-cols-2 gap-6 mt-16 text-left max-w-lg mx-auto">
+                    <div class="glass-effect rounded-lg p-4 flex items-start space-x-3">
+                        <svg class="w-6 h-6 mt-1 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Descubre nuevas rutas de escalada</span>
+                    </div>
+                    <div class="glass-effect rounded-lg p-4 flex items-start space-x-3">
+                        <svg class="w-6 h-6 mt-1 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Conecta con otros escaladores</span>
+                    </div>
+                    <div class="glass-effect rounded-lg p-4 flex items-start space-x-3">
+                        <svg class="w-6 h-6 mt-1 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Comparte tus experiencias</span>
+                    </div>
+                    <div class="glass-effect rounded-lg p-4 flex items-start space-x-3">
+                        <svg class="w-6 h-6 mt-1 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Encuentra spots cercanos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- [El resto del código del formulario permanece igual] -->
+    <div class="flex-1 flex items-center justify-center p-4 bg-white">
+        <!-- [Contenido del formulario igual que antes] -->
+        <div class="w-full max-w-md space-y-8 px-4">
+            <!-- Logo móvil -->
+            <div class="md:hidden text-center mb-8">
+                <h1 class="text-3xl font-bold text-lime-600">WithClimb</h1>
+                <p class="text-gray-600 mt-2">Tu comunidad de escalada</p>
+            </div>
+
+            <!-- Encabezado del formulario -->
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">Crea tu cuenta</h2>
+                <p class="mt-2 text-sm text-gray-600">Y comienza tu aventura con nosotros</p>
+            </div>
+
+            {% for flash in app.flashes('success') %}
+                <div class="alert alert-success">{{ flash }}</div>
+            {% endfor %}
+
+            {% for flash in app.flashes('error') %}
+                <div class="alert alert-danger">{{ flash }}</div>
+            {% endfor %}
+
+            <!-- Formulario -->
+            {{ form_start(registrationForm, {'attr': {'class': 'space-y-6 mt-8'}}) }}
+            <div class="space-y-5">
+                <div>
+                    {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-lime-500 focus:ring-lime-500'}}) }}
+                    {{ form_errors(registrationForm.email) }}
+                </div>
+
+                <div>
+                    {{ form_label(registrationForm.nombre, 'Nombre', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                    {{ form_widget(registrationForm.nombre, {'attr': {'class': 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-lime-500 focus:ring-lime-500'}}) }}
+                    {{ form_errors(registrationForm.nombre) }}
+                </div>
+
+                <div>
+                    {{ form_label(registrationForm.plainPassword, 'Contraseña', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-lime-500 focus:ring-lime-500'}}) }}
+                    {{ form_errors(registrationForm.plainPassword) }}
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500 transition-colors duration-200">
+                    Unirme a WithClimb
+                </button>
+            </div>
+            {{ form_end(registrationForm) }}
+
+            <!-- Enlaces adicionales -->
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    ¿Ya tienes cuenta?
+                    <a href="{{ path('app_login') }}" class="font-medium text-lime-600 hover:text-lime-500 transition-colors">
+                        Inicia sesión aquí
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% macro render(climb) %}
+    <div class="bg-white rounded-lg shadow-sm p-6">
+        <div class="flex items-start gap-4">
+            <img src="{{ asset('uploads/' ~ climb.idUsuario.avatar ) }}" alt="{{ climb.idUsuario.nombre }}" class="w-12 h-12 rounded-full">
+            <div class="flex-1">
+                <div class="font-medium">
+                    {{ climb.idUsuario.nombre }} · <span class="text-gray-500 text-sm">{{ climb.fecha|time_ago }}</span>
+                </div>
+                <div class="text-gray-600">el usuario ha marcado esta vía como completada</div>
+                <a href="{{ path('app_users_routes', {id: climb.idVia.id}) }}" class="text-blue-500 hover:underline">
+                    {{ climb.idVia.nombre }} {{ climb.idVia.gradoDificultad }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

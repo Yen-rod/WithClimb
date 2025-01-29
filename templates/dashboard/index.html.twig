@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de control</title>
+    <link href="{{ asset('assets/plugin/TailWind/tailwind.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/dashboard.css') }}">
+    <script src="{{ asset('assets/plugin/TailWind/tailwind.min.js') }}"></script>
+
+    {% block meta %}{% endblock %}
+    {% block js %}{% endblock %}
+
+    <style>
+
+    </style>
+    {% block css %}{% endblock %}
+</head>
+<body class="bg-gray-50">
+<!-- Navegación -->
+<header class="bg-white border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+                <a href="/" class="text-xl font-bold text-blue-600 hover:text-blue-700">WithClimb</a>
+                <div class="ml-10 flex items-center space-x-4">
+                    <a href="{{ path('admin_routes') }}"
+                       class="py-2 px-3 text-gray-600 hover:text-gray-800 border-b-2 transition-colors duration-200 {{ app.request.get('_route') starts with 'admin_routes' ? 'border-blue-500 text-blue-600' : 'border-transparent' }}">
+                        Vías
+                    </a>
+                    <a href="{{ path('admin_restaurants') }}"
+                       class="py-2 px-3 text-gray-600 hover:text-gray-800 border-b-2 transition-colors duration-200 {{ app.request.get('_route') starts with 'admin_restaurants' ? 'border-blue-500 text-blue-600' : 'border-transparent' }}">
+                        Restaurantes
+                    </a>
+                    <a href="{{ path('admin_zones') }}"
+                       class="py-2 px-3 text-gray-600 hover:text-gray-800 border-b-2 transition-colors duration-200 {{ app.request.get('_route') starts with 'admin_zones' ? 'border-blue-500 text-blue-600' : 'border-transparent' }}">
+                        Zonas
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative">
+                <button type="button"
+                        class="flex items-center gap-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="user-menu-button"
+                        aria-expanded="false"
+                        aria-haspopup="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-gray-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </button>
+
+                <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                     role="menu"
+                     aria-orientation="vertical"
+                     aria-labelledby="user-menu-button"
+                     tabindex="-1"
+                     id="user-menu">
+                    <a href="{{ path('app_logout') }}"
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
+                       role="menuitem"
+                       tabindex="-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                        </svg>
+                        Salir del sistema
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    document.getElementById('user-menu-button').addEventListener('click', function() {
+        document.getElementById('user-menu').classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('#user-menu-button')) {
+            document.getElementById('user-menu').classList.add('hidden');
+        }
+    });
+</script>
+
+<div class="min-h-screen p-4 md:p-6 lg:p-8 pt-16">
+       {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

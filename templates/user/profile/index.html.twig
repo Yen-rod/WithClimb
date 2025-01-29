@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Editar Perfil {% endblock %}
+
+{% block body %}
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div class="p-6 sm:p-8">
+                    <h1 class="text-2xl font-bold text-gray-900 mb-6">Editar Perfil</h1>
+
+                    <!-- Avatar Section -->
+                    <div class="mb-8">
+                        <div class="flex items-center gap-6">
+                            <div class="relative">
+                                {% if app.user.hasAvatar %}
+                                    <img
+                                            src="{{ asset('uploads/' ~ app.user.avatar) }}"
+                                            alt="Avatar de {{ app.user.nombre }}"
+                                            id="current-avatar"
+                                            class="w-24 h-24 rounded-full object-cover"
+                                    >
+                                {% else %}
+                                    <img
+                                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z'/%3E%3C/svg%3E"
+                                            alt="Avatar por defecto"
+                                            id="current-avatar"
+                                            class="w-24 h-24 rounded-full object-cover"
+                                    >
+                                {% endif %}
+                                <button type="button"
+                                        id="change-avatar-btn"
+                                        class="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-md hover:bg-gray-50">
+                                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-gray-900">Foto de perfil</h3>
+                                <p class="text-sm text-gray-500">JPG, PNG o WebP. Máximo 1MB.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="profile-form" class="space-y-6">
+                        <!-- Nombre -->
+                        <div>
+                            <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+                            <input type="text"
+                                   name="nombre"
+                                   id="nombre"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500">
+                        </div>
+
+                        <!-- Email (readonly) -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email"
+                                   name="email"
+                                   id="email"
+                                   readonly
+                                   class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm">
+                        </div>
+
+                        <!-- Género -->
+                        <div>
+                            <label for="genero" class="block text-sm font-medium text-gray-700">Género</label>
+                            <select name="genero"
+                                    id="genero"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500">
+                                <option value="H">Hombre</option>
+                                <option value="M">Mujer</option>
+                                <option value="O">Otro</option>
+                            </select>
+                        </div>
+
+                        <!-- Nueva contraseña -->
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700">Nueva contraseña</label>
+                            <input type="password"
+                                   name="password"
+                                   id="password"
+                                   placeholder="Dejar en blanco para mantener la actual"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500">
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="flex justify-end gap-4">
+                            <button type="submit"
+                                    class="px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-md hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                                Guardar cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- File input hidden -->
+    <input type="file"
+           id="avatar-input"
+           accept="image/jpeg,image/png,image/webp"
+           class="hidden">
+
+    <!-- Notifications container -->
+    <div id="notifications-container" class="fixed bottom-4 left-4 z-50 flex flex-col gap-2"></div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/user/profile.js') }}">
+{% endblock %}
